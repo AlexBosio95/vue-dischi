@@ -5,7 +5,7 @@
           <MusicCard v-for="(card, index) in MusicCards" 
           :key="index" 
           :card="card"
-          class="card"
+          class="ms_card"
           />
       </div>
     </div>
@@ -59,9 +59,10 @@ export default {
 main{
   height: 93vh;
   background-color: $colorBg;
+  overflow-y: scroll;
 
-  .card{
-    width: calc(100% / 5);
+  .ms_card{
+    width: calc(100% / 5 - 60px);
   }
 }
 
