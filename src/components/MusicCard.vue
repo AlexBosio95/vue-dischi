@@ -1,7 +1,7 @@
 <template>
   <div class="ms_card">
       <img :src="card.poster" alt="">
-      <h4 class="fw-bold">{{card.title}}</h4>
+      <h5 class="fw-bold">{{card.title}}</h5>
       <h6>{{card.author}}</h6>
       <h6>{{card.year}}</h6>
   </div>
@@ -25,7 +25,7 @@ div.ms_card{
     padding: 1rem;
     margin: 20px 15px;
 
-    h4{
+    h5{
     color: $colorText;
     text-transform: uppercase;
     text-align: center;
@@ -40,6 +40,7 @@ div.ms_card{
 
     img{
         width: 100%;
+        height: calc(100vw / 6 - 30px);
         object-fit: cover;
         
     }
