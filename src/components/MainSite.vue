@@ -1,8 +1,12 @@
 <template>
   <main>
-    <div class="row">
-      <div class="col-3">
-        <MusicCard />
+    <div class="container">
+    <div class="d-flex flex-wrap">
+          <MusicCard v-for="(card, index) in MusicCards" 
+          :key="index" 
+          :card="card"
+          class="card"
+          />
       </div>
     </div>
 
@@ -21,19 +25,25 @@ export default {
 
   data: function(){
     return{
+      MusicCards: []
 
     }
   },
   methods:{
     getData(){
-      axios.get('')
+      axios.get('https://flynn.boolean.careers/exercises/api/array/music')
       .then((result) => {
-          console.log(result)
+          console.log(result.data.response)
+          this.MusicCards = result.data.response
+          console.log(this.MusicCards)
+      })
+      .catch((error) => {
+          console.log(error)
       })
     }
 
   },
-  
+
   created(){
     this.getData()
   }
@@ -49,6 +59,10 @@ export default {
 main{
   height: 93vh;
   background-color: $colorBg;
+
+  .card{
+    width: calc(100% / 5);
+  }
 }
 
 </style>
