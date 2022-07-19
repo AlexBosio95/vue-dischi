@@ -62,7 +62,7 @@ main{
   overflow-y: scroll;
 
   .ms_card{
-    width: calc(100% / 5 - 60px);
+    width: calc(100% / 5 - 30px);
   }
 }
 
