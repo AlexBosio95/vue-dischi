@@ -8,7 +8,7 @@
       <div class="d-flex flex-wrap" v-if="isLoad">
             <SelectorSearch @search="getSelection" class="m-4"/>
 
-            <MusicCard v-for="(card, index) in MusicCards" 
+            <MusicCard v-for="(card, index) in filteredDisks" 
             :key="index" 
             :card="card"
             class="ms_card"/>
@@ -37,7 +37,7 @@ export default {
       MusicCards: [],
       isLoad: false,
       cardItem: [],
-      filteredDisks: '',
+      filteredDisks: [],
 
     }
   },
@@ -45,7 +45,8 @@ export default {
     getData(){
       axios.get('https://flynn.boolean.careers/exercises/api/array/music')
       .then((result) => {
-          this.MusicCards = result.data.response
+          this.MusicCards = result.data.response;
+          this.filteredDisks = this.MusicCards;
           setTimeout(() => {
               this.isLoad = true
           }, 1000); 
@@ -58,11 +59,10 @@ export default {
     
 
   },
-  
+
   computed:{
       getSelection(item) {
-      const filteredCards = [...this.MusicCards]
-      this.filteredDisks = filteredCards.filter((cardItem) => cardItem.genre.toLowerCase().includes(item)) 
+      this.filteredDisks = [...this.MusicCards].filter((cardItem) => cardItem.genre.toLowerCase().includes(item))
     }
   },
 
