@@ -56,15 +56,26 @@ export default {
           console.log(error)
       })
     },
+
+    getSelection(item) {
+      console.log(item)
+      console.log(this.cardItem)
+      if(item == 'All Genres...') {
+        this.filteredDisks = [...this.MusicCards]
+      } else {
+        this.filteredDisks = [...this.MusicCards].filter((cardItem) => cardItem.genre.includes(item))
+      }
+      console.log(this.filteredDisks)
+    }
     
 
   },
 
-  computed:{
-      getSelection(item) {
-      this.filteredDisks = [...this.MusicCards].filter((cardItem) => cardItem.genre.toLowerCase().includes(item))
-    }
-  },
+  // computed:{
+  //     getSelection(item) {
+  //     return [...this.MusicCards].filter((cardItem) => cardItem.genre.toLowerCase().includes(item))
+  //   }
+  // },
 
   created(){
     this.getData()
