@@ -7,7 +7,7 @@
             <option value="Jazz">Jazz</option>
             <option value="Metal">Metal</option>
         </select>
-        <button class="btn btn-secondary" type="button" @click="$emit('search', searchGenre)">Search</button>
+        <button class="btn btn-secondary" type="button" @click="$emit('search', searchGenre)">Search Genre</button>
     </div>
     
 
@@ -17,7 +17,7 @@
 export default {
     data: function() {
         return{
-            searchGenre: '',
+            searchGenre: 'All Genres...',
         }
     },
     created(){

@@ -6,7 +6,10 @@
         <LoadingCard />
       </div>
       <div class="d-flex flex-wrap" v-if="isLoad">
+
             <SelectorSearch @search="getSelection" class="m-4"/>
+
+            <AuthorSearch @search="getAuthor" class="m-4"/>
 
             <MusicCard v-for="(card, index) in filteredDisks" 
             :key="index" 
@@ -21,8 +24,10 @@
 <script>
 import axios from 'axios';
 import MusicCard from './MusicCard.vue';
-import LoadingCard from './LoadingCard.vue'
-import SelectorSearch from './SelectorSearch.vue'
+import LoadingCard from './LoadingCard.vue';
+import SelectorSearch from './SelectorSearch.vue';
+import AuthorSearch from './AuthorSearch.vue';
+
 
 export default {
 
@@ -30,6 +35,7 @@ export default {
     MusicCard,
     LoadingCard,
     SelectorSearch,
+    AuthorSearch,
   },
 
   data: function(){
@@ -38,6 +44,8 @@ export default {
       isLoad: false,
       cardItem: [],
       filteredDisks: [],
+      authorItem: [],
+      filteredAuthor: [],
 
     }
   },
@@ -59,13 +67,21 @@ export default {
 
     getSelection(item) {
       console.log(item)
-      console.log(this.cardItem)
       if(item == 'All Genres...') {
         this.filteredDisks = [...this.MusicCards]
       } else {
         this.filteredDisks = [...this.MusicCards].filter((cardItem) => cardItem.genre.includes(item))
       }
-      console.log(this.filteredDisks)
+    },
+
+    getAuthor(item) {
+      console.log(item)
+      if(item == 'All Author...') {
+        this.filteredDisks = [...this.MusicCards]
+      } else {
+        this.filteredDisks = [...this.MusicCards].filter((authorItem) => authorItem.author.includes(item))
+        console.log(this.filteredDisks)
+      }
     }
     
 
