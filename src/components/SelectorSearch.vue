@@ -7,7 +7,7 @@
             <option value="Jazz">Jazz</option>
             <option value="Metal">Metal</option>
         </select>
-        <button class="btn btn-secondary" type="button" v-on="$emit('search', searchGenre)">Search</button>
+        <button class="btn btn-secondary" type="button" @click="$emit('search', searchGenre)">Search</button>
     </div>
     
 

@@ -37,6 +37,7 @@ export default {
       MusicCards: [],
       isLoad: false,
       cardItem: [],
+      filteredDisks: '',
 
     }
   },
@@ -54,12 +55,15 @@ export default {
           console.log(error)
       })
     },
-    getSelection(item) {
+    
+
+  },
+  
+  computed:{
+      getSelection(item) {
       const filteredCards = [...this.MusicCards]
-      return filteredCards.filter((cardItem) => cardItem.genre.toLowerCase().includes(item)) 
-
+      this.filteredDisks = filteredCards.filter((cardItem) => cardItem.genre.toLowerCase().includes(item)) 
     }
-
   },
 
   created(){
