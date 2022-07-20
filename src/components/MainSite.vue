@@ -6,7 +6,7 @@
         <LoadingCard />
       </div>
       <div class="d-flex flex-wrap" v-if="isLoad">
-            <SelectorSearch class="m-4"/>
+            <SelectorSearch @search="getSelection" class="m-4"/>
 
             <MusicCard v-for="(card, index) in MusicCards" 
             :key="index" 
@@ -35,7 +35,8 @@ export default {
   data: function(){
     return{
       MusicCards: [],
-      isLoad: false
+      isLoad: false,
+      cardItem: [],
 
     }
   },
@@ -52,6 +53,11 @@ export default {
       .catch((error) => {
           console.log(error)
       })
+    },
+    getSelection(item) {
+      const filteredCards = [...this.MusicCards]
+      return filteredCards.filter((cardItem) => cardItem.genre.toLowerCase().includes(item)) 
+
     }
 
   },

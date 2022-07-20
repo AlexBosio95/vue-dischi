@@ -1,27 +1,29 @@
 <template>
   <div class="input-group">
-        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="selGenre">
             <option selected>All Genres...</option>
-            <option value="1">Rock</option>
-            <option value="2">Pop</option>
-            <option value="3">Jazz</option>
-            <option value="4">Metal</option>
+            <option value="Rock">Rock</option>
+            <option value="Pop">Pop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Metal">Metal</option>
         </select>
-        <button class="btn btn-secondary" type="button">Button</button>
-</div>
+        <button class="btn btn-secondary" type="button" v-on="$emit('search', selGenre)">Search</button>
+    </div>
+    
+
 </template>
 
 <script>
 export default {
-
-    props: {
-        card: Object,
-    },
     data: function() {
         return{
-            genArray: [],
+            selGenre: '',
         }
     },
+    created(){
+        
+        
+    }
 
 }
 </script>
@@ -29,7 +31,6 @@ export default {
 <style lang="scss" scoped>
 
 @import "../styles/variabiles.scss";
-
 
 
 </style>
