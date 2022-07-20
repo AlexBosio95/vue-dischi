@@ -1,13 +1,15 @@
 <template>
   <main>
     <div class="container">
-    <div class="d-flex flex-wrap">
-          <MusicCard v-for="(card, index) in MusicCards" 
-          :key="index" 
-          :card="card"
-          class="ms_card"
-          />
+      <div v-if="!isLoad">
+        <LoadingCard />
       </div>
+      <div class="d-flex flex-wrap" v-if="isLoad">
+            <MusicCard v-for="(card, index) in MusicCards" 
+            :key="index" 
+            :card="card"
+            class="ms_card"/>
+        </div>
     </div>
 
   </main>
@@ -16,16 +18,19 @@
 <script>
 import axios from 'axios';
 import MusicCard from './MusicCard.vue';
+import LoadingCard from './LoadingCard.vue'
 
 export default {
 
   components:{
     MusicCard,
+    LoadingCard,
   },
 
   data: function(){
     return{
-      MusicCards: []
+      MusicCards: [],
+      isLoad: false
 
     }
   },
@@ -33,9 +38,11 @@ export default {
     getData(){
       axios.get('https://flynn.boolean.careers/exercises/api/array/music')
       .then((result) => {
-          console.log(result.data.response)
           this.MusicCards = result.data.response
-          console.log(this.MusicCards)
+          setTimeout(() => {
+              this.isLoad = true
+          }, 4000); 
+          
       })
       .catch((error) => {
           console.log(error)
