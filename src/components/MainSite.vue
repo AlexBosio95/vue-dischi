@@ -7,6 +7,7 @@
       </div>
       <div class="d-flex flex-wrap" v-if="isLoad">
             <SelectorSearch class="m-4"/>
+
             <MusicCard v-for="(card, index) in MusicCards" 
             :key="index" 
             :card="card"
