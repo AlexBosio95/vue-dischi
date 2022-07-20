@@ -1,10 +1,12 @@
 <template>
   <main>
     <div class="container">
+
       <div v-if="!isLoad">
         <LoadingCard />
       </div>
       <div class="d-flex flex-wrap" v-if="isLoad">
+            <SelectorSearch class="m-4"/>
             <MusicCard v-for="(card, index) in MusicCards" 
             :key="index" 
             :card="card"
@@ -19,12 +21,14 @@
 import axios from 'axios';
 import MusicCard from './MusicCard.vue';
 import LoadingCard from './LoadingCard.vue'
+import SelectorSearch from './SelectorSearch.vue'
 
 export default {
 
   components:{
     MusicCard,
     LoadingCard,
+    SelectorSearch,
   },
 
   data: function(){
@@ -41,7 +45,7 @@ export default {
           this.MusicCards = result.data.response
           setTimeout(() => {
               this.isLoad = true
-          }, 4000); 
+          }, 1000); 
           
       })
       .catch((error) => {
